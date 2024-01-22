@@ -1,12 +1,19 @@
-import express from "express";
+import mongoose from "mongoose";
 
-const app = express();
-const PORT = 3000;
+const connect = () => {
+  mongoose
+    .connect(
+      "mongodb+srv://sparta-user:aaaa4321@express-mongo.rfjyyrl.mongodb.net/?retryWrites=true&w=majority",
+      {
+        dbName: "NBC_product",
+      },
+    )
+    .then(() => console.log("MongoDB 연결에 성공하였습니다."))
+    .catch((err) => console.log(`MongoDB 연결에 실패하였습니다. ${err}`));
+};
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+mongoose.connection.on("error", (err) => {
+  console.error("MongoDB 연결 에러", err);
 });
 
-app.listen(PORT, () => {
-  console.log(PORT, "포트로 서버가 열렸어요!");
-});
+export default connect;
