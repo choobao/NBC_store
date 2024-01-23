@@ -2,7 +2,12 @@ import mongoose from "mongoose";
 
 const connect = () => {
   mongoose
-    .connect(process.env.MONGODB_URI, { dbName: process.env.DB_NAME })
+    .connect(
+      "mongodb+srv://sparta-user:aaaa4321@express-mongo.rfjyyrl.mongodb.net/?retryWrites=true&w=majority",
+      {
+        dbName: "NBC_product",
+      },
+    )
     .then(() => console.log("MongoDB 연결에 성공하였습니다."))
     .catch((err) => console.log(`MongoDB 연결에 실패하였습니다. ${err}`));
 };
