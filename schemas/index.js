@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const connect = () => {
   mongoose
-    .connect(
-      "mongodb+srv://sparta-user:aaaa4321@express-mongo.rfjyyrl.mongodb.net/?retryWrites=true&w=majority",
-      {
-        dbName: "NBC_product",
-      },
-    )
+    .connect(process.env.MONGODB_URI, { dbName: process.env.DB_NAME })
     .then(() => console.log("MongoDB 연결에 성공하였습니다."))
     .catch((err) => console.log(`MongoDB 연결에 실패하였습니다. ${err}`));
 };
