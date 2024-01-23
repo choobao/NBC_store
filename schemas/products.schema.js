@@ -1,25 +1,36 @@
 import mongoose from "mongoose";
 
-const NBC_product = new mongoose.Schema({
-  productsId: {
-    type: Number,
-    required: true,
-    unique: true,
+const NBC_product = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: String,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["FOR_SALE", "SOLD_OUT"],
+      default: "FOR_SALE",
+    },
   },
-  name: {
-    type: String,
-    required: true,
-    unique: true,
+  {
+    timestamp: true,
   },
-  category: {
-    type: String,
-  },
-  content: {
-    type: String,
-  },
-  price: {
-    type: Number,
-  },
-});
+);
 
 export default mongoose.model("Products", NBC_product);
